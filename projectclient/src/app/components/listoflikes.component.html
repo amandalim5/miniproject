@@ -1,0 +1,68 @@
+<br /><br />
+<div class="center" [hidden]="listOfProfiles == undefined">
+  <h1>They Like you!</h1>
+</div>
+
+<div
+  *ngFor="let p of listOfProfiles; let i = index"
+  [hidden]="listOfProfiles == undefined"
+  class="example-card"
+>
+  <!-- <table>
+    <tr>
+      <td><p [innerText]="p.displayName"></p></td>
+      <td></td>
+    </tr>
+  </table> -->
+  <mat-card>
+    <mat-card-header>
+      <!-- <div
+        mat-card-avatar
+        class="example-header-image"
+        [hidden]="
+          p.photoUrl != null || p.photoUrl != undefined || p.photoUrl != ''
+        "
+      ></div> -->
+      <img
+        src="{{ p.photoUrl }}"
+        mat-card-avatar
+        style="background-color: gray"
+      />
+      <mat-card-title *ngIf="p"
+        >{{ p.displayName | uppercase }}, {{ p.age }}</mat-card-title
+      >
+    </mat-card-header>
+
+    <mat-card-actions>
+      <div class="right">
+        <button
+          *ngIf="p.liked == true"
+          mat-fab
+          extended
+          color="primary"
+          [routerLink]="['/matchedlist', p.profileId]"
+        >
+          Matched!
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button
+          *ngIf="p.liked == false"
+          mat-fab
+          extended
+          color="primary"
+          [routerLink]="['/seeprofile', p.profileId]"
+        >
+          See More!
+          <mat-icon>search</mat-icon>
+        </button>
+      </div></mat-card-actions
+    >
+  </mat-card>
+  <br />
+</div>
+
+<div class="center">
+  <button mat-fab extended color="primary" [routerLink]="['/home']">
+    <mat-icon>arrow_back</mat-icon> Return Home
+  </button>
+</div>

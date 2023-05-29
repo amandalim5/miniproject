@@ -1,0 +1,27 @@
+<div class="center">
+  <br />
+  <h1>Leaving so soon?</h1>
+  <br />
+  <h2>Type your email address to confirm:</h2>
+  <form>
+    <mat-form-field style="width: 350px">
+      <mat-label>Email</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="amanda@gmail.com"
+        [value]="emailAddress"
+        [(ngModel)]="emailAddress"
+      />
+    </mat-form-field>
+    <br />
+    <button
+      [disabled]="emailAddress != currentemail"
+      mat-flat-button
+      color="primary"
+      (click)="deleteAccount()"
+    >
+      Delete My Account!
+    </button>
+  </form>
+</div>

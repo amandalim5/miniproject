@@ -1,0 +1,67 @@
+<div class="center" *ngIf="currentChat">
+  <mat-card class="center">
+    <mat-card-header class="center"
+      ><img
+        src="{{ currentChat.photoUrl }}"
+        mat-card-avatar
+        style="background-color: gray"
+      />
+      <mat-card-title></mat-card-title>
+      <h1 style="margin-left: -10px">
+        {{ currentChat.otherDisplayName | uppercase }}
+      </h1>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="past" #scrollMe>
+        <br />
+        <div
+          *ngFor="let m of pastMessages; let i = index"
+          [hidden]="pastMessages == undefined"
+        >
+          <div
+            [ngClass]="{
+              leftMessage: currentChat.otherDisplayName == m.author,
+              rightMessage: currentChat.otherDisplayName != m.author
+            }"
+          >
+            <div
+              [ngClass]="{
+                eachmessage: currentChat.otherDisplayName == m.author,
+                otherMessage: currentChat.otherDisplayName != m.author
+              }"
+            >
+              {{ m.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+    </mat-card-content>
+
+    <mat-form-field style="width: 350px; margin: auto">
+      <mat-label>Message</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Hi there"
+        [value]="newMessage"
+        [(ngModel)]="newMessage"
+      />
+    </mat-form-field>
+    <div style="text-align: center">
+      <button
+        style="width: 250px; margin: auto"
+        type="button"
+        [disabled]="newMessage == ''"
+        mat-fab
+        extended
+        color="primary"
+        (click)="sendMessage()"
+      >
+        Send
+      </button>
+    </div>
+    <br /><br /><br /><br /><br />
+  </mat-card>
+</div>

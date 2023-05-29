@@ -1,0 +1,71 @@
+<div class="home">
+  <h1>Welcome Back {{ currentUser | titlecase }}!</h1>
+  <br />
+  <p>
+    <button
+      type="button"
+      mat-fab
+      extended
+      color="primary"
+      [routerLink]="['/profile']"
+    >
+      <mat-icon>account_circle</mat-icon>Update Your Profile
+    </button>
+  </p>
+  <br />
+  <p>
+    <button
+      type="button"
+      mat-fab
+      extended
+      color="primary"
+      [routerLink]="['/lookaround']"
+    >
+      <mat-icon>search</mat-icon>Let's Look Around!
+    </button>
+  </p>
+  <br />
+
+  <p>
+    <button
+      type="button"
+      mat-fab
+      extended
+      color="primary"
+      [routerLink]="['/likelist']"
+    >
+      <mat-icon>favorite</mat-icon>List Of Likes
+    </button>
+  </p>
+  <br />
+
+  <p>
+    <button
+      type="button"
+      mat-fab
+      extended
+      color="primary"
+      [routerLink]="['/changepassword']"
+    >
+      <mat-icon> vpn_key</mat-icon>Change Password
+    </button>
+  </p>
+  <br />
+  <p>
+    <button
+      type="button"
+      mat-fab
+      extended
+      color="primary"
+      [routerLink]="['/deleteaccount']"
+    >
+      <mat-icon>delete</mat-icon>Delete My Account
+    </button>
+  </p>
+  <br />
+  <p>
+    <button type="button" mat-fab extended (click)="logout()" color="primary">
+      <mat-icon style="margin: right 0">exit_to_app</mat-icon>Logout
+    </button>
+  </p>
+</div>

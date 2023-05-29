@@ -1,0 +1,146 @@
+<form class="theform" [formGroup]="listForm" (ngSubmit)="search()">
+  <mat-form-field style="width: 350px">
+    <mat-label>Search</mat-label>
+    <input
+      type="text"
+      formControlName="search"
+      matInput
+      placeholder="mushroom"
+      [value]="searchTerm"
+      [(ngModel)]="searchTerm"
+    />
+  </mat-form-field>
+  <br />
+  <button
+    style="width: 150px; height: 50px; margin-right: 10px"
+    color="accent"
+    mat-flat-button
+    type="submit"
+  >
+    Search Summaries
+  </button>
+
+  <button
+    style="width: 150px; height: 50px; margin-left: 10px"
+    color="accent"
+    mat-flat-button
+    type="button"
+    (click)="searchByName()"
+  >
+    Search Names
+  </button>
+</form>
+<br />
+<div class="example-card" [hidden]="listOfProfiles == undefined">
+  <mat-card class="example-card">
+    <mat-card-header class="left">
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title *ngIf="currentProfile"
+        >{{ currentProfile.displayName | uppercase }},
+        {{ currentProfile.age }}</mat-card-title
+      >
+      <mat-card-subtitle>{{ distance }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      style="
+        height: 300px;
+        width: 400px;
+
+        object-fit: contain;
+        margin: auto;
+        background-color: grey;
+      "
+      mat-card-image
+      src="{{ photourl }}"
+      alt="Photo of Corn"
+    />
+    <mat-card-content class="left">
+      <p
+        style="
+          font-size: large;
+          overflow-wrap: break-word;
+          line-height: 32px;
+          margin: 15px 0;
+          white-space: pre-wrap;
+        "
+      >
+        <!-- Hello there -->
+        {{ currentProfile.summary }}
+      </p>
+      <hr />
+      <!-- <p style="font-size: large; margin-top: 20px">Height: {{ height }} cm</p>
+      <p style="font-size: large; margin-top: 20px">Weight: {{ weight }} kg</p>
+      <p style="font-size: large; margin-top: 20px; margin-bottom: 20px">
+        Smoking Habits: {{ isSmoking }}
+      </p> -->
+      <p style="font-size: large; margin-top: 20px">
+        Height: {{ currentProfile.height }} cm
+      </p>
+      <p style="font-size: large; margin-top: 20px">
+        Weight: {{ currentProfile.weight }} kg
+      </p>
+      <p style="font-size: large; margin-top: 20px; margin-bottom: 20px">
+        Smoking Habits: {{ currentProfile.isSmoking }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="center">
+      <!-- <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button> -->
+      <span> </span>
+      <button
+        mat-flat-button
+        type="button"
+        color="primary"
+        [disabled]="
+          currentProfile.postalCode == null ||
+          currentProfile.postalCode == '' ||
+          checked == true
+        "
+        matBadge="{{ checks }}"
+        matBadgeColor="warn"
+        (click)="processDistance()"
+      >
+        CHECK DISTANCE
+      </button>
+      <br />
+    </mat-card-actions>
+  </mat-card>
+
+  <br />
+  <br />
+  <button
+    mat-fab
+    style="margin-right: 10px"
+    type="button"
+    color="primary"
+    (click)="getPreviousProfile()"
+  >
+    <mat-icon matSuffix>keyboard_arrow_left</mat-icon>
+  </button>
+  <button
+    mat-fab
+    type="button"
+    color="primary"
+    matBadge="{{ likes }}"
+    matBadgeColor="warn"
+    (click)="like()"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    style="margin-left: 10px"
+    mat-fab
+    type="button"
+    color="primary"
+    (click)="getNextProfile()"
+  >
+    <mat-icon matSuffix>keyboard_arrow_right</mat-icon>
+  </button>
+</div>
+<br />
+<div class="center">
+  <button mat-fab extended color="primary" [routerLink]="['/home']">
+    <mat-icon>arrow_back</mat-icon> Return Home
+  </button>
+</div>
+<br /><br />

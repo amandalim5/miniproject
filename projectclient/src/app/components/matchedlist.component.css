@@ -1,0 +1,77 @@
+.example-card {
+  max-width: 400px;
+  margin: 0 auto;
+  /* text-align: center;/ */
+  text-align: center;
+}
+.left {
+  text-align: left;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.example-header-image {
+  /* background-image: url("https://cdn-icons-png.flaticon.com/512/877/877698.png"); */
+  background-size: cover;
+}
+
+.right {
+  display: -webkit-box;
+
+  margin-left: auto;
+}
+.past {
+  height: 550px;
+  width: 400px;
+  border: 2px solid rgb(254, 228, 228);
+  margin: auto;
+  overflow-y: auto;
+  text-align: left;
+}
+.eachmessage {
+  border: 2px solid black;
+  background-color: rgb(255, 150, 75, 0.5);
+  color: beige;
+  margin-top: 5px;
+  margin: 5px;
+  font-size: 20px;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 25px;
+  max-width: 80%;
+}
+
+.user {
+  background-color: rgb(255, 255, 255);
+  border: 2px solid black;
+  background-color: rgb(75, 210, 255);
+  margin-top: 5px;
+  margin: 5px;
+  font-size: 20px;
+  display: inline-block;
+  padding: 10px;
+  width: 20%;
+  text-align: right;
+}
+.leftMessage {
+  text-align: left;
+}
+.rightMessage {
+  text-align: right;
+}
+
+.otherMessage {
+  border: 2px solid black;
+  background-color: rgb(75, 210, 255, 0.5);
+  color: beige;
+  margin-top: 5px;
+  margin: 5px;
+  font-size: 20px;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 25px;
+  max-width: 80%;
+}

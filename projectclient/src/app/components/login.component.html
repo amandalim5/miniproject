@@ -1,0 +1,52 @@
+<form class="theform" [formGroup]="loginForm" (ngSubmit)="processLogin()">
+  <h1>Welcome back!</h1>
+  <mat-form-field style="width: 350px">
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      formControlName="email"
+      matInput
+      placeholder="amanda@gmail.com"
+    />
+    <mat-error *ngIf="loginForm.get('email')!.hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Password</mat-label>
+    <input
+      formControlName="password"
+      matInput
+      [type]="hide ? 'password' : 'text'"
+    />
+    <mat-icon style="color: grey" matSuffix (click)="hide = !hide">{{
+      hide ? "visibility_off" : "visibility"
+    }}</mat-icon>
+    <!-- <mat-error *ngIf="loginForm.get('password')!.hasError('wrongPassword')"
+      >Password/Email is wrong. Please try again.</mat-error
+    > -->
+    <mat-hint class="mat-error" *ngIf="passwordiswrong"
+      >Email/Password is incorrect. Please try again.</mat-hint
+    >
+  </mat-form-field>
+  <br />
+  <p>
+    Do not have an account?
+    <a style="font-weight: 1000; color: white" [routerLink]="['/register']">
+      Sign Up Now!</a
+    >
+  </p>
+  <p>
+    <a style="color: white" [routerLink]="['/reset']">Forgot your password?</a>
+  </p>
+  <br />
+  <button
+    type="submit"
+    mat-flat-button
+    color="primary"
+    [disabled]="loginForm.invalid"
+  >
+    Login
+  </button>
+</form>

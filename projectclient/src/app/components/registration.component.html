@@ -1,0 +1,72 @@
+<form
+  class="theform"
+  [formGroup]="registrationForm"
+  (ngSubmit)="processRegistration()"
+>
+  <h1>Fill in your details</h1>
+  <mat-form-field style="width: 350px">
+    <mat-label>Name</mat-label>
+    <input
+      type="text"
+      formControlName="username"
+      matInput
+      placeholder="amanda"
+    />
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>I am...</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="female"> Female </mat-option>
+      <mat-option value="male"> Male </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      formControlName="email"
+      matInput
+      placeholder="amanda@gmail.com"
+      (ngModelChange)="switchOffHint()"
+    />
+    <mat-error *ngIf="registrationForm.get('email')!.hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-hint class="mat-error" *ngIf="emailAddressExists"
+      >This email has been used by someone else.</mat-hint
+    >
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Password</mat-label>
+    <input
+      formControlName="password"
+      matInput
+      [type]="hide ? 'password' : 'text'"
+    />
+    <mat-icon style="color: grey" matSuffix (click)="hide = !hide">{{
+      hide ? "visibility_off" : "visibility"
+    }}</mat-icon>
+    <mat-error *ngIf="registrationForm.get('password')!.hasError('minlength')">
+      Please use a longer password.
+    </mat-error>
+  </mat-form-field>
+  <br />
+  <p>
+    Already have an account?
+    <a style="font-weight: 1000; color: white" [routerLink]="['/']">
+      Log in now!</a
+    >
+  </p>
+  <br />
+  <button
+    type="submit"
+    mat-flat-button
+    color="primary"
+    [disabled]="registrationForm.invalid"
+  >
+    Submit
+  </button>
+</form>

@@ -1,0 +1,192 @@
+<form class="theform" [formGroup]="profileForm" (ngSubmit)="processProfile()">
+  <h1>Tell The World About Yourself!</h1>
+  <p>
+    <mat-slide-toggle
+      color="primary"
+      formControlName="pprofileIsPublic"
+      [checked]="profileIsPublic"
+      [(ngModel)]="profileIsPublic"
+      >Make my Profile Public</mat-slide-toggle
+    >
+  </p>
+
+  <mat-form-field style="width: 350px">
+    <mat-label>Display Name</mat-label>
+    <input
+      type="text"
+      formControlName="pdisplayName"
+      matInput
+      placeholder="mushroom"
+      [value]="displayName"
+      [(ngModel)]="displayName"
+    />
+  </mat-form-field>
+  <br />
+  <mat-form-field appearance="fill" style="width: 350px">
+    <mat-label>Birthday</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      placeholder="MM/DD/YYYY"
+      formControlName="pbirthday"
+      [value]="thebirth"
+      [(ngModel)]="thebirth"
+    />
+    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br />
+  <input
+    type="file"
+    class="file-input"
+    [accept]="requiredFileType"
+    (change)="onFileSelected($event)"
+    #fileUpload
+  />
+
+  <div class="file-upload">
+    {{ fileName || "Upload a profile image." }}
+    <button
+      style="margin-right: 10px"
+      type="button"
+      mat-mini-fab
+      color="primary"
+      class="upload-btn"
+      (click)="fileUpload.click()"
+    >
+      <mat-icon>attach_file</mat-icon>
+    </button>
+    <button
+      style="margin-left: 10px"
+      type="button"
+      mat-mini-fab
+      color="primary"
+      [disabled]="!fileName"
+      (click)="deletePhoto()"
+    >
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
+
+  <div class="progress">
+    <mat-progress-bar
+      class="progress-bar"
+      mode="determinate"
+      [value]="uploadProgress"
+      *ngIf="uploadProgress"
+    >
+    </mat-progress-bar>
+
+    <mat-icon
+      class="cancel-upload"
+      (click)="cancelUpload()"
+      *ngIf="uploadProgress"
+      >delete_forever</mat-icon
+    >
+  </div>
+
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Height</mat-label>
+    <input
+      type="number"
+      formControlName="pheight"
+      matInput
+      placeholder="123cm"
+      [value]="height"
+      [(ngModel)]="height"
+    /><span style="position: absolute; right: 0px; bottom: 15px">CM</span>
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Weight</mat-label>
+    <input
+      type="number"
+      formControlName="pweight"
+      matInput
+      placeholder="50kg"
+      [value]="weight"
+      [(ngModel)]="weight"
+    /><span style="position: absolute; right: 0px; bottom: 15px">KG</span>
+  </mat-form-field>
+
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Smoking Habits</mat-label>
+    <mat-select
+      formControlName="pisSmoking"
+      [value]="isSmoking"
+      [(ngModel)]="isSmoking"
+    >
+      <mat-option value="Does not smoke"> I do not smoke </mat-option>
+      <mat-option value="Smokes lightly"> I smoke lightly </mat-option>
+      <mat-option value="Heavy smoker"> I smoke a lot </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px; height: 200px">
+    <mat-label>Summary</mat-label>
+    <textarea
+      type="text"
+      formControlName="psummary"
+      matInput
+      placeholder="I am an average human being."
+      [value]="summary"
+      [(ngModel)]="summary"
+      cols="30"
+      rows="6"
+    ></textarea>
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Send a message when matched!</mat-label>
+    <textarea
+      type="text"
+      cols="30"
+      rows="5"
+      formControlName="pmail"
+      matInput
+      [value]="mail"
+      [(ngModel)]="mail"
+      placeholder="Feel free to connect with me on IG/Telegram @thisistheway"
+    ></textarea>
+  </mat-form-field>
+  <br />
+  <mat-form-field style="width: 350px">
+    <mat-label>Postal Code</mat-label>
+    <input
+      type="text"
+      formControlName="ppostalCode"
+      matInput
+      placeholder="515253"
+      [value]="postalCode"
+      [(ngModel)]="postalCode"
+    />
+    <mat-hint>We will not show your postal code to anyone!</mat-hint>
+  </mat-form-field>
+
+  <br />
+  <br />
+  <p>
+    <button
+      style="margin-right: 10px"
+      type="submit"
+      mat-flat-button
+      color="primary"
+      [disabled]="profileForm.invalid"
+    >
+      Save</button
+    ><span> </span>
+    <button
+      style="margin-left: 10px"
+      type="button"
+      mat-flat-button
+      color="primary"
+      [routerLink]="['/preview', currentemail]"
+      [disabled]="saved == false && result == false"
+    >
+      Preview of Saved Profile
+    </button>
+  </p>
+</form>

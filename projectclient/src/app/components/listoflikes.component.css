@@ -1,0 +1,25 @@
+.example-card {
+  max-width: 400px;
+  margin: 0 auto;
+  /* text-align: center;/ */
+  text-align: center;
+}
+.left {
+  text-align: left;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.example-header-image {
+  /* background-image: url("https://cdn-icons-png.flaticon.com/512/877/877698.png"); */
+  background-size: cover;
+}
+
+.right {
+  display: -webkit-box;
+
+  margin-left: auto;
+}
